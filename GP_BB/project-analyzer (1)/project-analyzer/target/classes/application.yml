@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: project-analyzer
+  jackson:
+    serialization:
+      indent-output: true
+      write-null-map-values: false
+    default-property-inclusion: non_null
+
+server:
+  port: 8080
+
+logging:
+  level:
+    com.analyzer: DEBUG
+    org.springframework: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+# ── Analyzer Configuration ──────────────────────────────────────────────
+analyzer:
+  tools:
+    dir: ${user.home}/.analyzer-tools
+
+  # PMD - سيتم تحميله تلقائياً إذا لم يكن موجوداً
+  pmd:
+    home:   # اتركه فاضي للـ auto-detect
+
+  # SonarQube - اختياري
+  sonar:
+    url:     http://localhost:9000
+    token:   # ضع الـ token هنا
+    scanner:
+      home:  # اتركه فاضي للـ auto-detect
